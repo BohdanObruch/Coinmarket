@@ -1,0 +1,16 @@
+{
+  "base": {
+    "project": "Coinmarketcap",
+    "environment": "dev",
+    "comment": "ui tests",
+    "reportLink": "",
+    "language": "en",
+    "allureFolder": "allure-report/",
+    "enableChart": true
+  },
+  "telegram": {
+    "token": "*****:*****",
+    "chat": "*****",
+    "replyTo": ""
+  }
+}
