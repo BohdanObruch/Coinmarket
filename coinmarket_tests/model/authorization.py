@@ -1,18 +1,27 @@
+import pytest
 from selene import browser, be, have
 import time
 from tests.conftest import dotenv
 from coinmarket_tests.helpers.locator import *
 
-user_email = dotenv.get('USER_Email')
-user_pass = dotenv.get('USER_Password')
+
+user_1_email = dotenv.get('USER_1_Email')
+user_1_pass = dotenv.get('USER_1_Password')
+user_2_email = dotenv.get('USER_2_Email')
+user_2_pass = dotenv.get('USER_2_Password')
 base_url = dotenv.get('BASE_URL')
 
-user = {
-    "Email": user_email,
-    "Password": user_pass}
+user_1 = {
+    "Email": user_1_email,
+    "Password": user_1_pass}
+#
+user_2 = {
+    "Email": user_2_email,
+    "Password": user_2_pass}
 
 
-def authorization_on_the_site():
+@pytest.mark.parametrize("user", [user_1, user_2])
+def authorization_on_the_site(user):
     browser.element(login_button_locator).click()
 
     browser.element(email_locator).type(user['Email'])
