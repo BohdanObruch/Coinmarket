@@ -8,5 +8,6 @@ def going_to_my_diamonds_page():
 
 
 def collecting_a_daily_bonus():
+    browser.driver.refresh()
     browser.element(collect_diamond_locator).click()
-    time.sleep(3)
+    time.sleep(2)

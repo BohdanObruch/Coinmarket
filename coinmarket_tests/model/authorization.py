@@ -1,5 +1,5 @@
 import pytest
-from selene import browser, be, have
+from selene import browser, have
 import time
 from tests.conftest import dotenv
 from coinmarket_tests.helpers.locator import *
@@ -26,7 +26,7 @@ def authorization_on_the_site(user):
 
     browser.element(email_locator).type(user['Email'])
     password = browser.element(password_locator).type(user['Password'])
-    time.sleep(2)
+    time.sleep(1)
     password.press_enter()
 
 
