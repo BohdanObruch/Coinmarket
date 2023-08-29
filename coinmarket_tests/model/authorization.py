@@ -9,6 +9,8 @@ user_1_email = dotenv.get('USER_1_Email')
 user_1_pass = dotenv.get('USER_1_Password')
 user_2_email = dotenv.get('USER_2_Email')
 user_2_pass = dotenv.get('USER_2_Password')
+user_3_email = dotenv.get('USER_2_Email')
+user_3_pass = dotenv.get('USER_2_Password')
 base_url = dotenv.get('BASE_URL')
 
 user_1 = {
@@ -19,8 +21,12 @@ user_2 = {
     "Email": user_2_email,
     "Password": user_2_pass}
 
+user_3 = {
+    "Email": user_3_email,
+    "Password": user_3_pass}
 
-@pytest.mark.parametrize("user", [user_1, user_2])
+
+@pytest.mark.parametrize("user", [user_1, user_2, user_3])
 def authorization_on_the_site(user):
     browser.element(login_button_locator).click()
 

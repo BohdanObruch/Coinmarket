@@ -2,10 +2,10 @@ import pytest
 from tests.conftest import opened_page_website
 from coinmarket_tests.model.authorization import *
 from coinmarket_tests.model.screenshot import creating_and_saving_a_screenshot
-from coinmarket_tests.pages.my_diamonds import going_to_my_diamonds_page, collecting_a_daily_bonus
+from coinmarket_tests.pages.my_diamonds import *
 
 
-@pytest.mark.parametrize("user", [user_1, user_2])
+@pytest.mark.parametrize("user", [user_1, user_2, user_3])
 def test_receiving_a_daily_bonus(user, setup_browser):
     opened_page_website()
 
@@ -17,4 +17,6 @@ def test_receiving_a_daily_bonus(user, setup_browser):
 
     collecting_a_daily_bonus()
 
-    creating_and_saving_a_screenshot()
+    check_that_the_bonus_was_received()
+
+    creating_and_saving_a_screenshot(user)
