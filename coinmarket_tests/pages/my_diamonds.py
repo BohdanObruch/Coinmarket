@@ -14,5 +14,5 @@ def collecting_a_daily_bonus():
 
 
 def check_that_the_bonus_was_received():
-    browser.element(pop_up_diamond).should_not(be.visible)
+    browser.element(pop_up_diamond).should(be.visible)
     browser.element(ok_button_locator).click()
