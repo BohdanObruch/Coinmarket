@@ -9,8 +9,8 @@ user_1_email = dotenv.get('USER_1_Email')
 user_1_pass = dotenv.get('USER_1_Password')
 user_2_email = dotenv.get('USER_2_Email')
 user_2_pass = dotenv.get('USER_2_Password')
-user_3_email = dotenv.get('USER_2_Email')
-user_3_pass = dotenv.get('USER_2_Password')
+user_3_email = dotenv.get('USER_3_Email')
+user_3_pass = dotenv.get('USER_3_Password')
 base_url = dotenv.get('BASE_URL')
 
 user_1 = {

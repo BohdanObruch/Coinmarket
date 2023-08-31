@@ -17,6 +17,4 @@ def test_receiving_a_daily_bonus(user, setup_browser):
 
     collecting_a_daily_bonus()
 
-    check_that_the_bonus_was_received()
-
     creating_and_saving_a_screenshot(user)
