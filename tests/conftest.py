@@ -36,7 +36,7 @@ def pytest_addoption(parser):
     )
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope='function', autouse=True)
 def setup_browser(request):
     browser_version = request.config.getoption('--browser_version')
     headless = request.config.getoption('--headless')
@@ -53,6 +53,7 @@ def setup_browser(request):
         browser.config.timeout = float(os.getenv('selene.timeout', '4'))
         browser.config.window_width = 1920
         browser.config.window_height = 1080
+        browser.quit()
 
     else:
         selenoid_capabilities = {
@@ -74,49 +75,10 @@ def setup_browser(request):
         browser.config.driver = driver
         browser.config.window_width = 1920
         browser.config.window_height = 1080
-    yield browser
+        yield browser
 
-    attach.add_html(browser)
-    attach.add_screenshot(browser)
-    attach.add_logs(browser)
-    attach.add_video(browser)
-    browser.quit()
-
-    # if headless:
-    #     options.add_argument('--headless')
-    #     browser.config.browser_name = 'chrome'
-    #     browser.config.hold_browser_open = (
-    #             os.getenv('selene.hold_browser_open', 'false').lower() == 'true'
-    #     )
-    #     browser.config.timeout = float(os.getenv('selene.timeout', '4'))
-    #     browser.config.window_width = 1920
-    #     browser.config.window_height = 1080
-    #     browser.quit()
-    #
-    # else:
-    #     selenoid_capabilities = {
-    #         "browserName": "chrome",
-    #         "browserVersion": browser_version,
-    #         "selenoid:options": {
-    #             "enableVNC": True,
-    #             "enableVideo": True
-    #         }
-    #     }
-    #     options.capabilities.update(selenoid_capabilities)
-    #
-    #     url = os.getenv('URL')
-    #
-    #     driver = webdriver_selenium.Remote(
-    #         command_executor=f"{url}/wd/hub",
-    #         options=options
-    #     )
-    #     browser.config.driver = driver
-    #     browser.config.window_width = 1920
-    #     browser.config.window_height = 1080
-    # yield browser
-    #
-    # attach.add_html(browser)
-    # attach.add_screenshot(browser)
-    # attach.add_logs(browser)
-    # attach.add_video(browser)
-    # browser.quit()
+        attach.add_html(browser)
+        attach.add_screenshot(browser)
+        attach.add_logs(browser)
+        attach.add_video(browser)
+        browser.quit()

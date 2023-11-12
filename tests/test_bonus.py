@@ -6,7 +6,7 @@ from coinmarket_tests.pages.my_diamonds import *
 
 
 @pytest.mark.parametrize("user", [user_1, user_2, user_3])
-def test_receiving_a_daily_bonus(user, setup_browser):
+def test_receiving_a_daily_bonus(user):
     opened_page_website()
 
     authorization_on_the_site(user)

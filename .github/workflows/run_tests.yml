@@ -1,10 +1,6 @@
 name: Automated tests
 
 on:
-  push:
-    branches:
-      - main
-
   schedule:
     - cron: '0 5 * * *'
 
@@ -89,4 +85,4 @@ jobs:
             echo "URL=${{ secrets.URL }}" >> .env
             echo "SELENOID=${{ secrets.SELENOID }}" >> .env
             cat .env
-          pytest --headless=False
+          pytest
