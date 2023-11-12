@@ -32,10 +32,8 @@ jobs:
       - name: Install Chrome
         run: sudo apt-get install google-chrome-stable
       - name: Install dependencies
-        run: |
-          pip install poetry
-          poetry install
-      
+        run: pip install -r requirements.txt
+
 
         env:
           USER_1_Email: ${{ secrets.USER_1_Email }}
