@@ -26,7 +26,7 @@ jobs:
 
     steps:
       - name: Set headless mode
-        run: echo HEADLESS=True >> $GITHUB_ENV
+        run: echo headless=True >> $GITHUB_ENV
 
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -72,7 +72,7 @@ jobs:
             echo "URL=${{ secrets.URL }}" >> .env
             echo "SELENOID=${{ secrets.SELENOID }}" >> .env
             cat .env
-          pytest pytest --headless=True
+          pytest --headless=True
 
       - name: Run tests with non-headless Chrome, on Selenoid
         if: "github.event.inputs.deployment_target == 'headless=False'"
@@ -89,4 +89,4 @@ jobs:
             echo "URL=${{ secrets.URL }}" >> .env
             echo "SELENOID=${{ secrets.SELENOID }}" >> .env
             cat .env
-          pytest pytest --headless=False
+          pytest --headless=False
