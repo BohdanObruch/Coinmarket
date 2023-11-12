@@ -36,8 +36,6 @@ jobs:
           USER_3_Email: ${{ secrets.USER_3_Email }}
           USER_3_Password: ${{ secrets.USER_3_Password }}
           BASE_URL: ${{ secrets.BASE_URL }}
-          URL: ${{ secrets.URL }}
-          SELENOID: ${{ secrets.SELENOID }}
 
       - name: Run tests with headless Chrome
         run: |

@@ -49,7 +49,7 @@ def setup_browser(request):
 
     if headless == 'True':
         browser.config.driver_options = options
-        options.add_argument(f'--version={browser_version}')
+        options.add_argument(f'--browser_version={browser_version}')
         options.add_argument('--headless')
         browser.config.window_width = 1920
         browser.config.window_height = 1080
