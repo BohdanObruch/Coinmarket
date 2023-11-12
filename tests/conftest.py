@@ -22,13 +22,13 @@ def opened_page_website():
     browser.open(web_url)
 
 
-DEFAULT_BROWSER_VERSION = "116.0"
+DEFAULT_BROWSER_VERSION = "118.0"
 
 
 def pytest_addoption(parser):
     parser.addoption(
         '--browser_version',
-        default='116.0'
+        default='118.0'
     )
     parser.addoption(
         '--headless',
@@ -49,6 +49,7 @@ def setup_browser(request):
 
     if headless == 'True':
         browser.config.driver_options = options
+        options.add_argument(f'--version={browser_version}')
         options.add_argument('--headless')
         browser.config.window_width = 1920
         browser.config.window_height = 1080
