@@ -32,7 +32,7 @@ def pytest_addoption(parser):
     )
     parser.addoption(
         '--headless',
-        default=False
+        default='False'
     )
 
 
@@ -48,11 +48,11 @@ def setup_browser(request):
     options.add_argument('--disable-dev-shm-usage')
 
     if headless == 'True':
+        browser.config.driver_options = options
         options.add_argument('--headless')
-        browser.config.browser_name = 'chrome'
-        browser.config.timeout = float(os.getenv('selene.timeout', '4'))
         browser.config.window_width = 1920
         browser.config.window_height = 1080
+        yield browser
         browser.quit()
 
     else:

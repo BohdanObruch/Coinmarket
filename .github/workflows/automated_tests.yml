@@ -1,0 +1,56 @@
+name: Automated tests
+
+on:
+  schedule:
+    - cron: '0 5 * * *'
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install Chrome
+        run: sudo apt-get install google-chrome-stable
+
+      - name: Install dependencies
+        run: |
+          python3 -m venv .venv
+          source .venv/bin/activate
+          pip install -r requirements.txt
+
+
+        env:
+          USER_1_Email: ${{ secrets.USER_1_Email }}
+          USER_1_Password: ${{ secrets.USER_1_Password }}
+          USER_2_Email: ${{ secrets.USER_2_Email }}
+          USER_2_Password: ${{ secrets.USER_2_Password }}
+          USER_3_Email: ${{ secrets.USER_3_Email }}
+          USER_3_Password: ${{ secrets.USER_3_Password }}
+          BASE_URL: ${{ secrets.BASE_URL }}
+          URL: ${{ secrets.URL }}
+          SELENOID: ${{ secrets.SELENOID }}
+
+      - name: Run tests with headless Chrome
+        run: |
+          source .venv/bin/activate
+#          touch .env
+#            echo "USER_1_Email=${{ secrets.USER_1_Email }}" >> .env
+#            echo "USER_1_Password=${{ secrets.USER_1_Password }}" >> .env
+#            echo "USER_2_Email=${{ secrets.USER_2_Email }}" >> .env
+#            echo "USER_2_Password=${{ secrets.USER_2_Password }}" >> .env
+#            echo "USER_3_Email=${{ secrets.USER_3_Email }}" >> .env
+#            echo "USER_3_Password=${{ secrets.USER_3_Password }}" >> .env
+#            echo "BASE_URL=${{ secrets.BASE_URL }}" >> .env
+#            echo "URL=${{ secrets.URL }}" >> .env
+#            echo "SELENOID=${{ secrets.SELENOID }}" >> .env
+#            cat .env
+          pytest --headless=True

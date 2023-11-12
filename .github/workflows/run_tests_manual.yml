@@ -1,9 +1,6 @@
 name: Automated tests
 
 on:
-  schedule:
-    - cron: '0 5 * * *'
-
   workflow_dispatch:
     inputs:
       deployment_target:
@@ -21,9 +18,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set headless mode
-        run: echo headless=True >> $GITHUB_ENV
-
       - name: Checkout repository
         uses: actions/checkout@v3
 
