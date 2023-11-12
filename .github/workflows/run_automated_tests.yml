@@ -42,15 +42,4 @@ jobs:
       - name: Run tests with headless Chrome
         run: |
           source .venv/bin/activate
-#          touch .env
-#            echo "USER_1_Email=${{ secrets.USER_1_Email }}" >> .env
-#            echo "USER_1_Password=${{ secrets.USER_1_Password }}" >> .env
-#            echo "USER_2_Email=${{ secrets.USER_2_Email }}" >> .env
-#            echo "USER_2_Password=${{ secrets.USER_2_Password }}" >> .env
-#            echo "USER_3_Email=${{ secrets.USER_3_Email }}" >> .env
-#            echo "USER_3_Password=${{ secrets.USER_3_Password }}" >> .env
-#            echo "BASE_URL=${{ secrets.BASE_URL }}" >> .env
-#            echo "URL=${{ secrets.URL }}" >> .env
-#            echo "SELENOID=${{ secrets.SELENOID }}" >> .env
-#            cat .env
           pytest --headless=True
