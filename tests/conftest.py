@@ -50,10 +50,11 @@ def setup_browser(request):
     if headless == 'True':
         options.add_argument(f'--browser_version={browser_version}')
         options.add_argument('--headless')
-        chrome_browser = webdriver_selenium.Chrome(options=options)
-        chrome_browser.set_window_size(1920, 1080)
-        yield chrome_browser
-        chrome_browser.quit()
+        browser.config.driver_options = options
+        browser.config.window_width = 1920
+        browser.config.window_height = 1080
+        yield browser
+        browser.quit()
 
     else:
         selenoid_capabilities = {
