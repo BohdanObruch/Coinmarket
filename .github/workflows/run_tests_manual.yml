@@ -28,9 +28,7 @@ jobs:
 
       - name: Install Chrome
         run: |
-          sudo apt-get install google-chrome
-            sudo apt-get install chromium-chromedriver
-          
+          sudo apt-get install google-chrome-stable
 
       - name: Install dependencies
         run: |
