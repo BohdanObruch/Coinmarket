@@ -28,12 +28,11 @@ jobs:
 
       - name: Install Chrome
         run: |
-          sudo apt-get install google-chrome-stable 
-
-#          sudo apt-get remove google-chrome-stable
-#          wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-#          sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-#          sudo apt-get update
+          sudo apt-get remove google-chrome-stable
+          wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+          sudo apt-get update
+          sudo apt-get install google-chrome-stable
 
       - name: Install dependencies
         run: |
@@ -57,17 +56,6 @@ jobs:
         if: "github.event.inputs.deployment_target == 'headless=True'"
         run: |
           source .venv/bin/activate
-          touch .env
-            echo "USER_1_Email=${{ secrets.USER_1_Email }}" >> .env
-            echo "USER_1_Password=${{ secrets.USER_1_Password }}" >> .env
-            echo "USER_2_Email=${{ secrets.USER_2_Email }}" >> .env
-            echo "USER_2_Password=${{ secrets.USER_2_Password }}" >> .env
-            echo "USER_3_Email=${{ secrets.USER_3_Email }}" >> .env
-            echo "USER_3_Password=${{ secrets.USER_3_Password }}" >> .env
-            echo "BASE_URL=${{ secrets.BASE_URL }}" >> .env
-            echo "URL=${{ secrets.URL }}" >> .env
-            echo "SELENOID=${{ secrets.SELENOID }}" >> .env
-            cat .env
           pytest --headless=True
 
       - name: Run tests with non-headless Chrome, on Selenoid
