@@ -28,6 +28,7 @@ jobs:
 
       - name: Install Chrome
         run: |
+          sudo apt-get remove google-chrome-stable
           sudo apt-get install google-chrome-stable
 
       - name: Install dependencies
