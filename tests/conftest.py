@@ -41,14 +41,14 @@ def setup_browser(request):
     browser_version = request.config.getoption('--browser_version')
     headless = request.config.getoption('--headless')
     browser_version = browser_version if browser_version != "" else DEFAULT_BROWSER_VERSION
-    options = webdriver_selenium.ChromeOptions()
+    options = Options()
     options.add_argument('--disable-gpu')
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-setuid-sandbox')
     options.add_argument('--disable-dev-shm-usage')
 
     if headless == 'True':
-        browser.config.driver_options = options
+        browser.config.driver_options = webdriver_selenium.ChromeOptions()
         options.add_argument(f'--browser_version={browser_version}')
         options.add_argument('--headless')
         browser.config.window_width = 1920
