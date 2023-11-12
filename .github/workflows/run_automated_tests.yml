@@ -21,7 +21,9 @@ jobs:
       - name: Install Chrome
         run: |
           sudo apt-get install google-chrome-stable
+          `google-chrome version`
           google-chrome --version
+          `chromedriver version` 
           chromedriver --version
         
 
