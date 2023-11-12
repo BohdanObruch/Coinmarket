@@ -11,11 +11,11 @@ on:
       deployment_target:
         description: Choose target
         required: true
-        default: headless==True
+        default: headless=True
         type: choice
         options:
-          - headless==True
-          - headless==False
+          - headless=True
+          - headless=False
 
 
 jobs:
