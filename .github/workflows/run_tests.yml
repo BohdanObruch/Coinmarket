@@ -47,7 +47,7 @@ jobs:
           SELENOID: ${{ secrets.SELENOID }}
 
       - name: Run tests with headless Chrome
-        if: "github.event.inputs.deployment_target == 'headless==True'"
+        if: "github.event.inputs.deployment_target == 'headless=True'"
         run: |
           source .venv/bin/activate
           touch .env
@@ -63,7 +63,7 @@ jobs:
             cat .env
           pytest pytest --headless=True
       - name: Run tests with non-headless Chrome, on Selenoid
-        if: "github.event.inputs.deployment_target == 'headless==False'"
+        if: "github.event.inputs.deployment_target == 'headless=False'"
         run: |
           source .venv/bin/activate
           touch .env
