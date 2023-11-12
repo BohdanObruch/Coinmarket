@@ -22,13 +22,13 @@ def opened_page_website():
     browser.open(web_url)
 
 
-DEFAULT_BROWSER_VERSION = "117.0"
+DEFAULT_BROWSER_VERSION = "118.0"
 
 
 def pytest_addoption(parser):
     parser.addoption(
         '--browser_version',
-        default='117.0'
+        default='118.0'
     )
     parser.addoption(
         '--headless',
@@ -48,13 +48,11 @@ def setup_browser(request):
     options.add_argument('--disable-dev-shm-usage')
 
     if headless == 'True':
-        browser.config.driver_options = webdriver_selenium.ChromeOptions()
         options.add_argument(f'--browser_version={browser_version}')
         options.add_argument('--headless')
-        browser.config.window_width = 1920
-        browser.config.window_height = 1080
-        yield browser
-        browser.quit()
+        chrome_browser = webdriver_selenium.Chrome(options=options)
+        chrome_browser.set_window_size(1920, 1080)
+        return chrome_browser
 
     else:
         selenoid_capabilities = {
